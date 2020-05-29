@@ -145,7 +145,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-			                                       <p>Name<span>*</span></p>
+			                                      <h4>Name<span>*</span></h4>
 			  									  <div class="form-group">
 			  									        <label for="sel1"></label>
 			  									        <select class="form-control" id="sel1">
@@ -159,7 +159,7 @@
 			                                </div>
 			                                <div class="col-lg-6">
 			                                    <div class="checkout__input">
-			                                        <p>Invoice No<span>*</span></p>
+			                                        <h4>Invoice No<span>*</span></h4>
 													<head runat="server">
 													<script type="text/javascript">
 													        now = new Date();
@@ -183,21 +183,21 @@
 			                     
                              <div class="col-lg-6">
                             <div class="checkout__input">
-                                <p>Address<span>*</span></p>
+                                <h4>Address<span>*</span></h4>
                                 <input type="text" placeholder="Street Address" class="checkout__input__add">
                                 <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
                             </div>
 							 </div>
 							   <div class="col-lg-6">
                             <div class="checkout__input">
-                                <p>Town/City<span>*</span></p>
+                                <h4>Town/City<span>*</span></h4>
                                 <input type="text">
                             </div>
                             </div>
                         
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Phone<span>*</span></p>
+                                        <h4>Phone<span>*</span></h4>
                                         <input type="text">
 									
                                     </div>
@@ -233,13 +233,25 @@
    
            <div class="checkout__form">
                 <center> <h4>Product Details</h4></center>
+				
                <form action="#">
                    <div class="row">
                        <div class="col-lg-8 col-md-6">
                            <div class="row">
                                <div class="col-lg-6">
                                    <div class="checkout__input">
-                                        <p>Product<span>*</span></p>
+									   
+											  
+	 									   <br>
+	 									    <br>
+	 										 <br>
+	 										  <br>
+	 										   <br>
+	 										    <br>
+	 											 <br>
+											 
+	 											  <br>
+                                        <h4>Product<span>*</span></h4>
 							        <select class="form-control" id="sel1">
 							          <option>Product Which already Stored</option>
 							          <option>1</option>
@@ -250,7 +262,16 @@
                                </div>
                                <div class="col-lg-6">
                                    <div class="checkout__input">
-                                      <p>Rate<span>*</span></p>
+									   <br>
+									    <br>
+										 <br>
+										  <br>
+										   <br>
+										    <br>
+											 <br>
+											 
+											  <br>
+                                      <h4>Rate<span>*</span></h4>
 									
 									<input type="text" placeholder="rate" id="txt1" onkeyup="sum();" />
 									
@@ -262,8 +283,9 @@
                            </div>
                            
                            <div class="checkout__input">
-                               <p>Quatity<span>*</span></p>
+                               <h4>Quatity<span>*</span></h4>
                                <input type="text" placeholder="quantity" id="txt2" onkeyup="sum();" />
+					
 							    <script>
 									function sum() {
 					 var txtFirstNumberValue = document.getElementById('txt1').value;
@@ -274,17 +296,18 @@
 									            }
 									        }
 							   </script>
+											
                               
                            </div>
                            
                          
-                            <input type="text" id="txt3" value="" />
+                         this total should store in database   <input type="text" id="txt3" value="" />
 							<br>
          <center>    <button type="submit" class="site-btn">Add</button></center>
                        </div>
                        <div class="col-lg-4 col-md-7">
                            <div class="checkout__order">
-                               <h4>Your Order</h4>
+                              <center>  <h4>Your Order</h4> </center>
 							   
                                <div class="checkout__order__products">Products <span>Qty</span></div>
                                <ul>
@@ -301,14 +324,42 @@
                                <p>.........................................................................................
 								   
                                    ..........................................................................................</p>
-                              <div class="checkout__order__products">Total <span>3000</span></div>
-                               <div class="checkout__input__checkbox">
-                                   <label for="paypal">
-                                       COD
-                                       <input type="checkbox" id="c">
-                                       <span class="checkmark"></span>
-                                   </label>
-                               </div>
+                              <div class="checkout__order__products">Total<span id = "txt3"></span></div>
+							  
+							  
+	                        
+							
+							
+							
+						 
+	 						  <div class="checkout__order__products">Discounted Total  =<span id = "re"></span></div>
+                              <p>.........................................................................................
+							   
+                                  ..........................................................................................</p>
+		
+	                     <center>   
+                    <h4>Discount</h4>	
+					<input type="text" placeholder="Discount Amount" id="txt4" onkeyup="sum();" class="txt txt-success btn-lg float-center"  />
+					<script>
+						function SubtractionBy()
+						{
+						num1 = document.getElementById("txt3").value; 
+						num2 = document.getElementById("txt4").value; 
+						document.getElementById("re").innerHTML = Number(num1) - Number(num2); 
+						} 
+					</script>
+					
+						 <br>
+			
+						 
+						 
+						 <input type="button" onClick="SubtractionBy()" class="site-btn" Value="Apply Discount" /> 
+						 </form> 
+                       
+						 
+						 
+						 
+						 
                                <button type="submit" class="site-btn">Print Bill</button>
 							   <br>
 								    <button type="submit" class="site-btn">Clear</button>
