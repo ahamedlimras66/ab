@@ -2,6 +2,8 @@
 <html lang="zxx">
 
 <head>
+    {% import "bootstrap/wtf.html" as wtf %}
+
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
@@ -13,14 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
 	<style>
 		table {
 		    width: 30px;   
@@ -78,25 +80,25 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="logo.png" alt="" width="160" height="80"></a>
+                        <a href="/"><img src="static/images/logo.png" alt="" width="160" height="80"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-				                <li class="active"><a href="./index.html">New Bill</a></li>
+				                <li class="active"><a href="/">New Bill</a></li>
                
 				                <li><a href="#">Customer</a>
 				                    <ul class="header__menu__dropdown">
-				                   <li><a href="./newc.html">New Customer</a></li>
+				                   <li><a href="/newCustomer">New Customer</a></li>
 				                   
                        
 				                    </ul>
 				                </li>
 				                <li><a href="#">Product</a>
 				                    <ul class="header__menu__dropdown">
-				                   <li><a href="./newitem.html">New Product</a></li>
-				                  <li><a href="./editproduct.html">Edit Product</a></li>
+				                   <li><a href="/newProduct">New Product</a></li>
+				                  <li><a href="/editProduct">Edit Product</a></li>
 				                    </ul>
 				                </li>
 				         
@@ -137,32 +139,29 @@
             </div>
             <div class="checkout__form">
                <center> <h4>New Product Details</h4></center>
-                <form action="#">
-                  
-                       
+                <form method="POST", action="/newProduct">
+                    {{ form.hidden_tag() }}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-			                                        <h4>Product Name<span>*</span></h4>
-			  									   <input type="text">
-			                                    </div>
-			                                </div>
-			                                <div class="col-lg-6">
-			                                    <div class="checkout__input">
-			                                        <h4>Price<span>*</span> </h4>
-													 <input type="text">
-												</div>
-			                                </div>
-			                     
-                           
-									
+                                        <h4>Product Name<span>*</span></h4>
+                                            {{ form.productname }}
                                     </div>
                                 </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <h4>Price<span>*</span> </h4>
+                                        {{ form.price }}
+
+                                </div>
+                            </div>
+                            </div>
+                            </div>
                             
                          <center>   <button type="submit" class="site-btn">Save</button>
 							<br>
 							<br>
-							 <button type="submit" class="site-btn">New Bill</button>
+							 <!-- <button type="submit" class="site-btn">New Bill</button> -->
 							  </center> 
                             </div>
                            
@@ -170,6 +169,7 @@
                         </div>
                        
                 </form>
+
             </div>
         </div>
     </section>
@@ -205,14 +205,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.nice-select.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+    <script src="static/js/jquery.slicknav.js"></script>
+    <script src="static/js/mixitup.min.js"></script>
+    <script src="static/js/owl.carousel.min.js"></script>
+    <script src="static/js/main.js"></script>
 
 
 
