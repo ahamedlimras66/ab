@@ -138,7 +138,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="checkout__input">
-                                <h4>Id<span>*</span></h4>
+                                <h4>customer name<span>*</span></h4>
                                 <div class="form-group">
 									<option value="" selected disabled hidden>Choose here</option>
                                     <label for="sel1"></label>
@@ -150,7 +150,7 @@
                         <div class="col-lg-6">
                             <div class="checkout__input">
                                 <h4>Name<span>*</span></h4>
-                                    {{ form.name }}
+                                    {{ form.bill_name }}
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -327,6 +327,7 @@
         var bill_info = {};
 
        let customer_select = document.getElementById('customername');
+       let bill_name = document.getElementById('bill_name');
        let address = document.getElementById('address');
        let phoneno = document.getElementById('phoneno');
        let town_city = document.getElementById('town_city');
@@ -344,7 +345,8 @@
                    address.value = data['address']
                    phoneno.value = data['phoneno']
                    town_city.value = data['town_city']
-                   invoiceno.value = data['invoiceno']
+
+                    bill_name.value = customer_select.options[customer_select.value-1].text
 
                    bill_info = {"product_id":[],
                                 "product_name":[],

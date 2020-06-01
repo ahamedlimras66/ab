@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 from models.form import *
 from models.schema import *
 from flask_admin import Admin
@@ -8,7 +9,7 @@ from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask import Flask, render_template, send_file, request, url_for, redirect, send_from_directory, jsonify
+from flask import Flask, render_template, send_file, request, url_for, redirect, send_from_directory, jsonify, Response
 
 
 app = Flask(__name__)
@@ -53,9 +54,19 @@ def find_customer(id):
 @app.route('/getdata/<jsdata>')
 def get_data(jsdata):
     data = json.loads(jsdata)
-    print(data['product_name'])
-    print(data)
-    return 200
+
+    new_invoice = Invoice(customer_id=data['customer_id'],
+                          invoice_date=datetime.datetime.now())
+    db.session.add(new_invoice)
+    db.session.commit()
+
+    for i in range(len(data['product_id'])):
+        new_iteam = Iteam(invoiceid=new_invoice.id,
+                          productid=data['product_id'][i],
+                          quantity=data['quatity'][i])
+        db.session.add(new_iteam)
+        db.session.commit()
+    return Response(status=200)
 
 @app.route("/")
 def home():

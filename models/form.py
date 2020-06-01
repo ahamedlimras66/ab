@@ -23,7 +23,7 @@ class BillForm(FlaskForm):
     address = StringField("address")
     phoneno = TelField("phoneno")
     town_city = StringField("town_city")
-    invoiceno = IntegerField("invoiceno")
+    bill_name = IntegerField("bill_name")
     productname = SelectField("productname", choices=[], coerce=int)
     price = IntegerField("price")
     quatity = IntegerField('quatity')
