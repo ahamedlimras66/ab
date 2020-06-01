@@ -119,6 +119,10 @@ def newCustomer():
     return render_template("newcustomer.html",
                             form=form)
 
+@app.route('/report')
+def report():
+    return render_template("report.html")
+
 @app.route("/login")
 def login():
     return render_template("login.html")

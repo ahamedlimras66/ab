@@ -2,7 +2,6 @@
 <html lang="zxx">
 
 <head>
-    {% import "bootstrap/wtf.html" as wtf %}
 
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
@@ -152,7 +151,6 @@
             <div class="checkout__form">
                <center> <h4>New Product Details</h4></center>
                 <form method="POST", action="/newProduct">
-                    {{ form.hidden_tag() }}
                             <div class="row">
 								<table style="width:100%">
 								  <tr>
