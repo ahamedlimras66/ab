@@ -220,8 +220,8 @@
 											 
 											  <br>
                                       <h4>Rate<span>*</span></h4>
-                                        {{ form.price }}
-									<!-- <input type="text" placeholder="rate" id="txt1" onkeyup="sum();" /> -->
+                                        {{ form.price(readonly=true)}}
+									<!-- <input type="text" placeholder="rate" id="txt1" onkeyup="sum();"  /> -->
 									
 									        
 									 
@@ -252,7 +252,7 @@
                            </div>
                            
                          
-                         this total should store in database   <input type="text" id="txt3" value="" />
+                       
 							<br>
          <center>    <input type="button" class="site-btn" onClick="add()" value="Add"/></center>
                        </div>
@@ -262,7 +262,7 @@
 							   
                                <div class="checkout__order__products">Products <span>Qty</span></div>
                                <ul id="list">
-                                   <!-- <li>Vegetable’s Package <span>1</span></li> -->
+                                   <!--<li>Vegetable’s Package <span>1</span></li> -->
                                    <!-- <li>Fresh Vegetable <span>1</span></li> -->
                                    <!-- <li>Organic Bananas <span>3</span></li> -->
                                </ul>
