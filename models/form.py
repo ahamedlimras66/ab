@@ -5,16 +5,16 @@ from wtforms.validators import InputRequired, Length, Required
 
 
 class NewProductForm(FlaskForm):
-    productname = StringField(validators=[InputRequired(), Length(max=50,min=2)])
-    price = IntegerField()
+    productname = StringField("productname", validators=[InputRequired(), Length(max=50,min=2)])
+    price = IntegerField("price")
 
 class NewCustomerForm(FlaskForm):
-    customername = StringField(validators=[InputRequired(), Length(max=20,min=4)])
-    address = StringField()
-    town_city = StringField()
-    phoneno = TelField()
+    customername = StringField("customername", validators=[InputRequired(), Length(max=20,min=4)])
+    address = StringField("address")
+    town_city = StringField("town_city")
+    phoneno = TelField("phoneno")
 
 class EditProductForm(FlaskForm):
-    productname = SelectField(choices=[], coerce=int)
-    price = IntegerField()
+    productname = SelectField("productname", choices=[], coerce=int)
+    price = IntegerField("price")
 

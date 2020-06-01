@@ -84,7 +84,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-				                <li class="active"><a href="/">New Bill</a></li>
+				                <li ><a href="/">New Bill</a></li>
                
 				                <li><a href="#">Customer</a>
 				                    <ul class="header__menu__dropdown">
@@ -93,7 +93,7 @@
                        
 				                    </ul>
 				                </li>
-				                <li><a href="#">Product</a>
+				                <li class="active"><a href="#">Product</a>
 				                    <ul class="header__menu__dropdown">
 				                   <li><a href="/newProduct">New Product</a></li>
 				                  <li><a href="/editProduct">Edit Product</a></li>
@@ -151,7 +151,7 @@
 			                                </div>
 			                                <div class="col-lg-6">
 			                                    <div class="checkout__input">
-			                                         <h4>Price<span>*</span> </h4>
+			                                         <h4 id='test'>Price<span>*</span> </h4>
 													 {{ form.price }}
 												</div>
 			                                </div>
@@ -226,7 +226,19 @@
     </section>
 
     <!-- Footer Section End -->
+    <script>
+        let proudct_select = document.getElementById('productname');
+        var price_select = document.getElementById('price');
 
+        proudct_select.onchange = function(){
+            state = proudct_select.value;
+            fetch('/product/'+state).then(function(response){
+                response.json().then(function(data){
+                    price_select.value = data['price']
+                })
+            })
+        }
+    </script>
     <!-- static/js/ Plugins -->
     <script src="static/js/jquery-3.3.1.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>

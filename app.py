@@ -7,7 +7,7 @@ from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask import Flask, render_template, send_file, request, url_for, redirect, send_from_directory
+from flask import Flask, render_template, send_file, request, url_for, redirect, send_from_directory, jsonify
 
 
 app = Flask(__name__)
@@ -23,6 +23,19 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 @app.before_first_request
 def create_tables():
     db.create_all()
+
+
+@app.route('/product/<id>')
+def find_product(id):
+    product = Product.query.filter_by(id=id).first()
+
+    iteam = {}
+    iteam['id'] = product.id
+    iteam['name'] = product.name
+    iteam['price'] = product.price
+
+    return jsonify(iteam)
+
 
 @app.route("/")
 def home():
