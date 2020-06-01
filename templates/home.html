@@ -138,11 +138,19 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="checkout__input">
-                                <h4>Name<span>*</span></h4>
+                                <h4>Id<span>*</span></h4>
                                 <div class="form-group">
+									<option value="" selected disabled hidden>Choose here</option>
                                     <label for="sel1"></label>
+									
                                         {{ form.customername() }}
                                 </div>	
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <h4>Name<span>*</span></h4>
+                                    {{ form.name }}
                             </div>
                         </div>
                         <div class="col-lg-6">
