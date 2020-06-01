@@ -1,4 +1,5 @@
 import os
+import json
 from models.form import *
 from models.schema import *
 from flask_admin import Admin
@@ -36,10 +37,37 @@ def find_product(id):
 
     return jsonify(iteam)
 
+@app.route('/customer/<id>')
+def find_customer(id):
+    customer = Customer.query.filter_by(id=id).first()
+
+    iteam = {}
+    iteam['id'] = customer.id
+    iteam['name'] = customer.name
+    iteam['town_city'] = customer.town_city
+    iteam['address'] = customer.address
+    iteam['phoneno'] = customer.phone
+
+    return jsonify(iteam)
+
+@app.route('/getdata/<jsdata>')
+def get_data(jsdata):
+    data = json.loads(jsdata)
+    print(data['product_name'])
+    print(data)
+    return 200
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    form = BillForm()
+    customers = db.session.query(Customer).all()
+    product = db.session.query(Product).all()
+
+    form.productname.choices = [(iteam.id,iteam.name) for iteam in product]
+    form.customername.choices = [(customer.id,customer.name) for customer in customers]
+
+
+    return render_template("home.html",form=form)
 
 @app.route("/newProduct", methods=['POST','GET'])
 def newProduct():

@@ -134,90 +134,49 @@
             <div class="checkout__form">
                <center> <h4>Customer Details</h4></center>
                 <form action="#">
-                  
-                       
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-			                                      <h4>Name<span>*</span></h4>
-			  									  <div class="form-group">
-			  									        <label for="sel1"></label>
-			  									        <select class="form-control" id="sel1">
-			  									          <option>Customer Name Which already Stored</option>
-			  									          <option>2</option>
-			  									          <option>3</option>
-			  									          <option>4</option>
-			  									        </select>
-			                                      </div>	
-			                                    </div>
-			                                </div>
-			                                <div class="col-lg-6">
-			                                    <div class="checkout__input">
-			                                        <h4>Invoice No<span>*</span></h4>
-													<head runat="server">
-													<script type="text/javascript">
-													        now = new Date();
-													        randomNum = '';
-										randomNum += Math.round(Math.random() * 2);
-								        randomNum += Math.round(Math.random() * 200);
-													        randomNum += now.getTime();
-													        window.onload = function () {
-						   document.getElementById("txt_usrid").value = randomNum.substr(0,3); // HERE ;)
-													        }
-															 </script>
-															</head>
-															<body>
-													 <form id="form1" runat="server">
-													 
-			                        <input type="text" tooltip="User Id" id="txt_usrid">
-												</div>
-												 
-											</div>
-												
-			                     
-                             <div class="col-lg-6">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="checkout__input">
-                                <h4>Address<span>*</span></h4>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
-                            </div>
-							 </div>
-							   <div class="col-lg-6">
-                            <div class="checkout__input">
-                                <h4>Town/City<span>*</span></h4>
-                                <input type="text">
-                            </div>
-                            </div>
-                        
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <h4>Phone<span>*</span></h4>
-                                        <input type="text">
-									
-                                    </div>
-                                </div>
-
-                            </div>
-                           
+                                <h4>Name<span>*</span></h4>
+                                <div class="form-group">
+                                    <label for="sel1"></label>
+                                        {{ form.customername() }}
+                                </div>	
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <h4>Invoice No<span>*</span></h4>
+                                    {{ form.invoiceno }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <h4>Address<span>*</span></h4>
+                                    {{ form.address }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <h4>Town/City<span>*</span></h4>
+                                    {{ form.town_city }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <h4>Phone<span>*</span></h4>
+                                    {{ form.phoneno }}
+                            </div>
+                        </div>
+                    </div>
+                </form>         
+            </div>
+        </div>
                        
-                </form>
             </div>
         </div>
     </section>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
    <!-- Checkout Section Begin -->
    <section class="checkout spad">
@@ -246,12 +205,7 @@
 											 
 	 											  <br>
                                         <h4>Product<span>*</span></h4>
-							        <select class="form-control" id="sel1">
-							          <option>Product Which already Stored</option>
-							          <option>1</option>
-							          <option>3</option>
-							          <option>4</option>
-							        </select>
+							        {{ form.productname() }}
                                    </div>
                                </div>
                                <div class="col-lg-6">
@@ -266,8 +220,8 @@
 											 
 											  <br>
                                       <h4>Rate<span>*</span></h4>
-									
-									<input type="text" placeholder="rate" id="txt1" onkeyup="sum();" />
+                                        {{ form.price }}
+									<!-- <input type="text" placeholder="rate" id="txt1" onkeyup="sum();" /> -->
 									
 									        
 									 
@@ -278,17 +232,20 @@
                            
                            <div class="checkout__input">
                                <h4>Quatity<span>*</span></h4>
-                               <input type="text" placeholder="quantity" id="txt2" onkeyup="sum();" />
+                               <!-- <input type="text" placeholder="quantity" id="txt2" onkeyup="sum();" /> -->
+                               {{ form.quatity }}
 					
 							    <script>
-									function sum() {
-					 var txtFirstNumberValue = document.getElementById('txt1').value;
-				 var txtSecondNumberValue = document.getElementById('txt2').value;
-		 var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
-			if (!isNaN(result)) {
-									    document.getElementById('txt3').value = result;
-									            }
-									        }
+
+
+									// function sum() {
+                                    //     var txtFirstNumberValue = document.getElementById('txt1').value;
+                                    //     var txtSecondNumberValue = document.getElementById('txt2').value;
+                                    //     var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+                                    //     if (!isNaN(result)) {
+									//     document.getElementById('txt3').value = result;
+                                    //     }
+                                    // }
 							   </script>
 											
                               
@@ -297,17 +254,17 @@
                          
                          this total should store in database   <input type="text" id="txt3" value="" />
 							<br>
-         <center>    <button type="submit" class="site-btn">Add</button></center>
+         <center>    <input type="button" class="site-btn" onClick="add()" value="Add"/></center>
                        </div>
                        <div class="col-lg-4 col-md-7">
                            <div class="checkout__order">
                               <center>  <h4>Your Order</h4> </center>
 							   
                                <div class="checkout__order__products">Products <span>Qty</span></div>
-                               <ul>
-                                   <li>Vegetable’s Package <span>1</span></li>
-                                   <li>Fresh Vegetable <span>1</span></li>
-                                   <li>Organic Bananas <span>3</span></li>
+                               <ul id="list">
+                                   <!-- <li>Vegetable’s Package <span>1</span></li> -->
+                                   <!-- <li>Fresh Vegetable <span>1</span></li> -->
+                                   <!-- <li>Organic Bananas <span>3</span></li> -->
                                </ul>
                                <ul>
                              
@@ -318,7 +275,7 @@
                                <p>.........................................................................................
 								   
                                    ..........................................................................................</p>
-                              <div class="checkout__order__products">Total<span id = "txt3"></span></div>
+                              <div class="checkout__order__products">Total<span id = "total"></span></div>
 							  
 							  
 	                        
@@ -326,35 +283,28 @@
 							
 							
 						 
-	 						  <div class="checkout__order__products">Discounted Total  =<span id = "re"></span></div>
+	 						  <div class="checkout__order__products">Discounted Total  =<span id = "final_amount"></span></div>
                               <p>.........................................................................................
 							   
                                   ..........................................................................................</p>
 		
 	                     <center>   
                     <h4>Discount</h4>	
-					<input type="text" placeholder="Discount Amount" id="txt4" onkeyup="sum();" class="txt txt-success btn-lg float-center"  />
-					<script>
-						function SubtractionBy()
-						{
-						num1 = document.getElementById("txt3").value; 
-						num2 = document.getElementById("txt4").value; 
-						document.getElementById("re").innerHTML = Number(num1) - Number(num2); 
-						} 
-					</script>
+					<input type="text" placeholder="Discount Amount" id="discount_amount" class="txt txt-success btn-lg float-center"  />
+
 					
 						 <br>
 			
 						 
 						 
-						 <input type="button" onClick="SubtractionBy()" class="site-btn" Value="Apply Discount" /> 
+						 <input type="button" onClick="discount();" class="site-btn" Value="Apply Discount" /> 
 						 </form> 
                        
 						 
 						 
 						 
 						 
-                               <button type="submit" class="site-btn">Print Bill</button>
+                               <button type="submit" class="site-btn" onClick="print_bill();">Print Bill</button>
 							   <br>
 								    <button type="submit" class="site-btn">Clear</button>
                            </div>
@@ -365,23 +315,72 @@
        </div>
    </section>
    <!-- Checkout Section End -->
-  
+   <script>
+        var bill_info = {};
+
+       let customer_select = document.getElementById('customername');
+       let address = document.getElementById('address');
+       let phoneno = document.getElementById('phoneno');
+       let town_city = document.getElementById('town_city');
+       let invoiceno = document.getElementById('invoiceno');
+       let proudct_select = document.getElementById('productname');
+       let price_select = document.getElementById('price');
+       let quantity = document.getElementById('quatity');
+       let total = 0;
 
 
+       customer_select.onchange = function(){
+           state = customer_select.value;
+           fetch('/customer/'+state).then(function(resphone){
+               resphone.json().then(function(data){
+                   address.value = data['address']
+                   phoneno.value = data['phoneno']
+                   town_city.value = data['town_city']
+                   invoiceno.value = data['invoiceno']
 
+                   bill_info = {"product_id":[],
+                                "product_name":[],
+                                "product_price":[],
+                                "quatity":[]}
+                   bill_info.customer_id = state
+                   total = 0
+               })
+           })
+       }
 
+       proudct_select.onchange = function(){
+            state = proudct_select.value;
+            fetch('/product/'+state).then(function(response){
+                response.json().then(function(data){
+                    price_select.value = data['price']
+                })
+            })
+        }
+        function print_bill(){
+            fetch('/getdata/'+JSON.stringify(bill_info))
+        }
 
+        function add(){
+            var x = "";
+            bill_info["product_id"].push(proudct_select.value)
+            bill_info["product_name"].push(proudct_select.options[proudct_select.value-1].text)
+            bill_info["product_price"].push(price_select.value)
+            bill_info["quatity"].push(quatity.value)
+            
+            total += quatity.value*price_select.value
+            var i;
+            for(i=0; i<bill_info.quatity.length;i++){
+                x += "<li>"+bill_info.product_name[i]+"<span>"+bill_info.quatity[i]+"</span></li>"
+            }
+            document.getElementById("list").innerHTML = x
+            document.getElementById("total").innerHTML = total
+        }
 
-
-
-
-
-
-
-  
-                        
-
-   
+        function discount(){
+            total -= document.getElementById("discount_amount").value
+            document.getElementById("final_amount").innerHTML = total
+        }
+   </script>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

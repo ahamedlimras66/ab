@@ -18,3 +18,13 @@ class EditProductForm(FlaskForm):
     productname = SelectField("productname", choices=[], coerce=int)
     price = IntegerField("price")
 
+class BillForm(FlaskForm):
+    customername = SelectField('customername', choices=[], coerce=int)
+    address = StringField("address")
+    phoneno = TelField("phoneno")
+    town_city = StringField("town_city")
+    invoiceno = IntegerField("invoiceno")
+    productname = SelectField("productname", choices=[], coerce=int)
+    price = IntegerField("price")
+    quatity = IntegerField('quatity')
+
