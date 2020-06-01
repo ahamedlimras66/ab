@@ -3,6 +3,7 @@
 
 <head>
     {% import "bootstrap/wtf.html" as wtf %}
+
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
@@ -27,6 +28,18 @@
 		    width: 30px;   
 		
 	}
+
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+	th, td {
+	  padding: 5px;
+	}
+	th {
+	  text-align: left;
+	}
+
 	input {display: block;}
 	input.total {margin-top: 30px;}
 	.textInput2
@@ -63,7 +76,7 @@
         <div class="loader"></div>
     </div>
 
-   
+  
     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
@@ -85,22 +98,22 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-				                <li><a href="/">New Bill</a></li>
+				                <li class="active"><a href="/">New Bill</a></li>
                
-				                <li class="active"><a href="#">Customer</a>
+				                <li><a href="#">Customer</a>
 				                    <ul class="header__menu__dropdown">
-				                   <li ><a href="/newCustomer">New Customer</a></li>
-				                 
+				                   <li><a href="/newCustomer">New Customer</a></li>
+				                   
                        
 				                    </ul>
 				                </li>
 				                <li><a href="#">Product</a>
 				                    <ul class="header__menu__dropdown">
 				                   <li><a href="/newProduct">New Product</a></li>
-				                  <li><a href="./editProduct">Edit Product</a></li>
+				                  <li><a href="/editProduct">Edit Product</a></li>
 				                    </ul>
 				                </li>
-				              
+				         
 				                <li><a href="./report.html">Sales Report</a></li>
 				            </ul>
                     </nav>
@@ -137,47 +150,52 @@
                 </div>
             </div>
             <div class="checkout__form">
-               <center> <h4>New Customer Details</h4></center>
-                <form method="POST", action="/newCustomer">
+               <center> <h4>New Product Details</h4></center>
+                <form method="POST", action="/newProduct">
                     {{ form.hidden_tag() }}
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                                    <h4>Customer Name<span>*</span></h4>
-                                                    {{ form.customername }}
-			                                    </div>
-			                                </div>
-			                                <div class="col-lg-6">
-			                                    <div class="checkout__input">
-			                                         <h4>Address<span>*</span></h4>
-                                                     {{ form.address }}
-		 			                                    </div>
-		 			                                </div>
-													<div class="col-lg-6">
-						                             <div class="checkout__input">
-						                                  <h4>Town/City<span>*</span></h4>
-                                                          {{ form.town_city }}
-						                                 
-						                             </div>
-													 </div>
-				                                <div class="col-lg-6">
-				                                    <div class="checkout__input">
-				                                        <h4>Phone<span>*</span> </h4>
-                                                        {{ form.phoneno }}
-				                                        
-				                                    </div>
-				                                </div>
-			                                </div>
-			                     
-                           
-									
-                                    </div>
-                                </div>
+								<table style="width:100%">
+								  <tr>
+								    <th>S no:</th>
+								    <th>Invoice No:</th> 
+								    <th>Customer Name</th>
+									<th>Total</th>
+								  </tr>
+								  <tr>
+								    <td></td>
+								    <td></td>
+								    <td></td>
+									 <td></td>
+								  </tr>
+								  <tr>
+								    <td></td>
+								    <td></td>
+								    <td></td>
+									 <td></td>
+								  </tr>
+								  <tr>
+								    <td></td>
+								    <td></td>
+								    <td></td>
+									 <td></td>
+								  </tr>
+								</table>
+   							<br>
+   							<br>
+							<table style="width:100%">
+							  <tr>
+							    <th>TOTAL SALES</th>
+							 </tr>
+						  <tr>
+						    <td></td>
+							  </tr>
+							  </table>
+                            </div>
                             
-                         <center>   <button type="submit" class="site-btn">Save</button>
+                         <center>   <a href="/home.html"><button type="submit" class="site-btn">Bill</button></a>
 							<br>
 							<br>
-							 
+							 <!-- <button type="submit" class="site-btn">New Bill</button> -->
 							  </center> 
                             </div>
                            
@@ -185,6 +203,7 @@
                         </div>
                        
                 </form>
+
             </div>
         </div>
     </section>
