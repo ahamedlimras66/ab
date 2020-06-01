@@ -96,7 +96,7 @@
 				                    </ul>
 				                </li>
 				               
-				                <li><a href="./report.html">Sales Report</a></li>
+				                <li><a href="/report">Sales Report</a></li>
 				            </ul>
                     </nav>
                 </div>
@@ -367,6 +367,7 @@
             })
         }
         function print_bill(){
+            bill_info.bill_name = bill_name.value
             fetch('/getdata/'+JSON.stringify(bill_info))
         }
 

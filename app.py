@@ -7,11 +7,12 @@ from flask_admin import Admin
 from flask_bootstrap import Bootstrap
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
+from InvoiceGenerator.pdf import SimpleInvoice
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask import Flask, render_template, send_file, request, url_for, redirect, send_from_directory, jsonify, Response
 
-
+os.environ["INVOICE_LANG"] = "en"
 app = Flask(__name__)
 Bootstrap(app)
 app.secret_key = 'my-secret-key'
@@ -26,6 +27,24 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 def create_tables():
     db.create_all()
 
+def generate_bill(info,invoice_number):
+    from InvoiceGenerator.api import Invoice, Item, Client, Provider, Creator
+
+    client = Client(info['bill_name'])
+    provider = Provider('AB', bank_account='1', bank_code='2010')
+    creator = Creator('John Doe')
+
+    invoice = Invoice(client, provider, creator)
+    invoice.currency_locale = 'en_US.UTF-8'
+    invoice.currency = u'₹'
+    invoice.number = invoice_number
+
+    for i in range(len(info['product_id'])):
+        invoice.add_item(Item(info['quatity'][i], info['product_price'][i], description=info['product_name'][i]))
+
+
+    pdf = SimpleInvoice(invoice)
+    pdf.gen("bills/"+str(invoice_number)+".pdf", generate_qr_code=True)
 
 @app.route('/product/<id>')
 def find_product(id):
@@ -54,7 +73,8 @@ def find_customer(id):
 @app.route('/getdata/<jsdata>')
 def get_data(jsdata):
     data = json.loads(jsdata)
-
+    print(data)
+    print(data['customer_id'])
     new_invoice = Invoice(customer_id=data['customer_id'],
                           invoice_date=datetime.datetime.now())
     db.session.add(new_invoice)
@@ -66,6 +86,9 @@ def get_data(jsdata):
                           quantity=data['quatity'][i])
         db.session.add(new_iteam)
         db.session.commit()
+
+    generate_bill(data,new_invoice.id)
+
     return Response(status=200)
 
 @app.route("/")
